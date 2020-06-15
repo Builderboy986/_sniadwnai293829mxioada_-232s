@@ -1,0 +1,115 @@
+function ConstantOutput(msg)
+	
+	-- Gui to Lua
+-- Version: 3.2
+
+-- Instances:
+
+local ConstantInfoMain = Instance.new("ImageLabel")
+local Icon692 = Instance.new("ImageLabel")
+local GenerateConstantScriptBtn = Instance.new("TextButton")
+
+--Properties:
+
+ConstantInfoMain.Name = "ConstantInfoMain"
+ConstantInfoMain.Parent = ScriptConstantContainer
+ConstantInfoMain.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ConstantInfoMain.BackgroundTransparency = 1.000
+ConstantInfoMain.Position = UDim2.new(0.0608591884, 0, 0, 0)
+ConstantInfoMain.Size = UDim2.new(0, 368, 0, 27)
+ConstantInfoMain.Image = "rbxassetid://2851926732"
+ConstantInfoMain.ImageColor3 = Color3.fromRGB(58, 58, 58)
+ConstantInfoMain.ScaleType = Enum.ScaleType.Slice
+ConstantInfoMain.SliceCenter = Rect.new(12, 12, 12, 12)
+
+Icon692.Name = "Icon69"
+Icon692.Parent = ConstantInfoMain
+Icon692.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Icon692.BackgroundTransparency = 1.000
+Icon692.Position = UDim2.new(0, 0, 0.0161290318, 0)
+Icon692.Size = UDim2.new(0, 25, 0, 25)
+Icon692.Image = "rbxassetid://4666593882"
+
+GenerateConstantScriptBtn.Name = "GenerateConstantScriptBtn"
+GenerateConstantScriptBtn.Parent = ConstantInfoMain
+GenerateConstantScriptBtn.BackgroundColor3 = Color3.fromRGB(58, 58, 58)
+GenerateConstantScriptBtn.BorderSizePixel = 0
+GenerateConstantScriptBtn.Position = UDim2.new(0.0842391327, 0, 0.0161289517, 0)
+GenerateConstantScriptBtn.Size = UDim2.new(0, 333, 0, 25)
+GenerateConstantScriptBtn.Font = Enum.Font.Code
+GenerateConstantScriptBtn.Text = tostring(msg)
+GenerateConstantScriptBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+GenerateConstantScriptBtn.TextSize = 16.000
+GenerateConstantScriptBtn.TextXAlignment = Enum.TextXAlignment.Left
+	ScriptConstantContainer.CanvasSize = ScriptConstantContainer.CanvasSize + UDim2.new(0,0,0.4,0)
+	
+end
+
+
+function FunctionOutput(index, value)
+	local ScriptInfoMain = Instance.new("Frame")
+local LogoIcon = Instance.new("ImageLabel")
+local ScriptFunctionValueText = Instance.new("TextLabel")
+local ScriptFunctionTextHolder = Instance.new("Frame")
+local LogoIcon2 = Instance.new("ImageLabel")
+local ScriptFunctionText = Instance.new("TextLabel")
+
+--Properties:
+
+ScriptInfoMain.Name = "ScriptInfoMain"
+ScriptInfoMain.Parent = ScriptFunctionContainer
+ScriptInfoMain.BackgroundColor3 = Color3.fromRGB(61, 61, 61)
+ScriptInfoMain.BorderSizePixel = 0
+ScriptInfoMain.Position = UDim2.new(0, 0, 0.00534759369, 0)
+ScriptInfoMain.Size = UDim2.new(0, 382, 0, 72)
+
+LogoIcon.Name = "LogoIcon"
+LogoIcon.Parent = ScriptInfoMain
+LogoIcon.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+LogoIcon.BackgroundTransparency = 1.000
+LogoIcon.Position = UDim2.new(0, 0, 0.00500005065, 0)
+LogoIcon.Size = UDim2.new(0, 26, 0, 26)
+LogoIcon.Image = "rbxassetid://2759601950"
+
+ScriptFunctionValueText.Name = "ScriptFunctionValueText"
+ScriptFunctionValueText.Parent = ScriptInfoMain
+ScriptFunctionValueText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ScriptFunctionValueText.BackgroundTransparency = 1.000
+ScriptFunctionValueText.Position = UDim2.new(0.068062827, 0, 0, 0)
+ScriptFunctionValueText.Size = UDim2.new(0, 356, 0, 26)
+ScriptFunctionValueText.Font = Enum.Font.SourceSansSemibold
+ScriptFunctionValueText.Text = tostring(value)
+ScriptFunctionValueText.TextColor3 = Color3.fromRGB(255, 255, 255)
+ScriptFunctionValueText.TextSize = 16.000
+ScriptFunctionValueText.TextWrapped = true
+ScriptFunctionValueText.TextXAlignment = Enum.TextXAlignment.Left
+
+ScriptFunctionTextHolder.Name = "ScriptFunctionTextHolder"
+ScriptFunctionTextHolder.Parent = ScriptInfoMain
+ScriptFunctionTextHolder.BackgroundColor3 = Color3.fromRGB(38, 38, 38)
+ScriptFunctionTextHolder.BorderSizePixel = 0
+ScriptFunctionTextHolder.Position = UDim2.new(0.018324608, 0, 0.463889003, 0)
+ScriptFunctionTextHolder.Size = UDim2.new(0, 367, 0, 34)
+
+LogoIcon2.Name = "LogoIcon2"
+LogoIcon2.Parent = ScriptFunctionTextHolder
+LogoIcon2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+LogoIcon2.BackgroundTransparency = 1.000
+LogoIcon2.Position = UDim2.new(0.0272479579, 0, 0.117646605, 0)
+LogoIcon2.Size = UDim2.new(0, 25, 0, 25)
+LogoIcon2.Image = "rbxassetid://4666594723"
+
+ScriptFunctionText.Name = "ScriptFunctionText"
+ScriptFunctionText.Parent = ScriptFunctionTextHolder
+ScriptFunctionText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ScriptFunctionText.BackgroundTransparency = 1.000
+ScriptFunctionText.Position = UDim2.new(0.117166214, 0, 0.117646612, 0)
+ScriptFunctionText.Size = UDim2.new(0, 312, 0, 24)
+ScriptFunctionText.Font = Enum.Font.Code
+ScriptFunctionText.Text = tostring(index)
+ScriptFunctionText.TextColor3 = Color3.fromRGB(255, 255, 255)
+ScriptFunctionText.TextSize = 14.000
+							ScriptFunctionText.TextXAlignment = Enum.TextXAlignment.Left
+							
+							ScriptFunctionContainer.CanvasSize = ScriptFunctionContainer.CanvasSize + UDim2.new(0,0,0.4,0)
+end
