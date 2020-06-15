@@ -438,3 +438,5 @@ Label_5.TextSize = 16.000
 Label_5.TextXAlignment = Enum.TextXAlignment.Left
 
 end
+
+ElementUICreation()
