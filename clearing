@@ -1,0 +1,69 @@
+function ClearModuleCon()
+  for i,v in pairs(ModuleContainer:GetChildren()) do
+
+
+    if v.ClassName == "Frame" then
+      v:Destroy()
+
+    end
+
+  end
+end
+
+function ClearModuleValCon()
+  ModuleValueContainer.CanvasSize = UDim2.new(0,0,0,0)
+  for i,v in pairs(ModuleValueContainer:GetChildren()) do
+
+
+    if v.ClassName == "ImageLabel" then
+      v:Destroy()
+
+    end
+
+  end
+end
+
+
+function ClearValCon()
+	for i,v in pairs(ValueContainer:GetChildren()) do
+		if v.ClassName == "Frame" then
+			v:Destroy()
+			ValueContainer.CanvasSize = UDim2.new(0,0,0,0)
+		end
+	end
+end
+
+function ClearModuleCon()
+	for i,v in pairs(ModuleContainer:GetChildren()) do
+		if v.ClassName == "Frame" then
+			v:Destroy()
+		end
+	end
+end
+
+function ClearScriptCon()
+	for i,v in pairs(ScriptContainer:GetChildren()) do
+		if v.ClassName == "Frame" then
+			v:Destroy()
+		end
+	end
+end
+
+function ClearScriptFuncCon()
+	for i,v in pairs(ScriptFunctionContainer:GetChildren()) do
+		if v.ClassName == "Frame" then
+			v:Destroy()
+		end
+	end
+end
+
+function ClearScriptconsCon()
+	ScriptConstantContainer.CanvasSize = UDim2.new(0,0,0,0)
+	for i,v in pairs(ScriptConstantContainer:GetChildren()) do
+		if v.ClassName == "ImageLabel" then
+			v:Destroy()
+		end
+	end
+end
+
+
