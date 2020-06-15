@@ -1,0 +1,939 @@
+--[[
+
+
+░█████╗░██╗░░░░░██╗░░░██╗░█████╗░░█████╗░██████╗░███████╗
+██╔══██╗██║░░░░░██║░░░██║██╔══██╗██╔══██╗██╔══██╗██╔════╝
+██║░░╚═╝██║░░░░░╚██╗░██╔╝██║░░╚═╝██║░░██║██████╔╝█████╗░░
+██║░░██╗██║░░░░░░╚████╔╝░██║░░██╗██║░░██║██╔══██╗██╔══╝░░
+╚█████╔╝███████╗░░╚██╔╝░░╚█████╔╝╚█████╔╝██║░░██║███████╗
+░╚════╝░╚══════╝░░░╚═╝░░░░╚════╝░░╚════╝░╚═╝░░╚═╝╚══════╝C
+
+Credits:
+hush for inspiration
+
+Version 2.5
+
+Updatelog: Rewrite
+
+
+
+]]
+
+
+-- Functions to check exploit functions and gui
+
+function CheckExploitFunctions()
+  if getreg and debug.setupvalue and debug.getupvalue and debug.getupvalues and getsenv and getrenv and require and setclipboard and getgc and debug.getregistry and writefile then
+  else
+    error("Your exploit DOES not support this script!")
+  end
+end
+
+function CheckIfAlreadyExists()
+  for i,v in pairs(game.CoreGui:GetDescendants()) do
+    if v.ClassName == "ScreenGui" then
+      if v.Name == "clvcore" then
+        error("GUI already exists")
+      end
+    end
+  end
+end
+
+
+
+-- Main gui instances
+
+local clvcore = Instance.new("ScreenGui")
+local Body = Instance.new("Frame")
+local Boarder = Instance.new("Frame")
+local Title = Instance.new("TextLabel")
+local ExitBtn = Instance.new("TextButton")
+local ButtonsHolder = Instance.new("ImageLabel")
+local ButtonsContainer = Instance.new("Frame")
+local UIListLayout = Instance.new("UIListLayout")
+local ModuleBtnHolder = Instance.new("Frame")
+local ModuleBtn = Instance.new("ImageButton")
+local ScriptScanBtnHolder = Instance.new("Frame")
+local ScriptScanBtn = Instance.new("ImageButton")
+local ConstantBtnHolder = Instance.new("Frame")
+local ConstantBtn = Instance.new("ImageButton")
+local ValueBtnHolder = Instance.new("Frame")
+local ValueBtn = Instance.new("ImageButton")
+local HttpSpyBtnHolder = Instance.new("Frame")
+local HttpSpyBtn = Instance.new("ImageButton")
+local ExplorerToggleBtnHolder = Instance.new("Frame")
+local ExplorerToggleBtn = Instance.new("ImageButton")
+local ScriptDebugBtnHolder = Instance.new("Frame")
+local ScriptDebugBtn = Instance.new("ImageButton")
+local TabsHolder = Instance.new("ImageLabel")
+local HomeTab = Instance.new("ImageLabel")
+local HomeTextlol = Instance.new("TextLabel")
+local ModuleTab = Instance.new("ImageLabel")
+local ModuleValueContainer = Instance.new("ScrollingFrame")
+local UIListLayout_2 = Instance.new("UIListLayout")
+local ModuleContainer = Instance.new("ScrollingFrame")
+local UIListLayout_3 = Instance.new("UIListLayout")
+local ScriptScanTab = Instance.new("ImageLabel")
+local ScriptContainer = Instance.new("ScrollingFrame")
+local UIListLayout_4 = Instance.new("UIListLayout")
+local ScriptConstantContainer = Instance.new("ScrollingFrame")
+local UIListLayout_5 = Instance.new("UIListLayout")
+local Text = Instance.new("TextLabel")
+local Text_2 = Instance.new("TextLabel")
+local Text_3 = Instance.new("TextLabel")
+local ScriptFunctionContainer = Instance.new("ScrollingFrame")
+local UIListLayout_6 = Instance.new("UIListLayout")
+local HttpSpyTab = Instance.new("ImageLabel")
+local ValueTab = Instance.new("ImageLabel")
+local ValueContainer = Instance.new("ScrollingFrame")
+local UIListLayout_7 = Instance.new("UIListLayout")
+local Text_4 = Instance.new("TextLabel")
+local Text_5 = Instance.new("TextLabel")
+local ValueValueContainer = Instance.new("ScrollingFrame")
+local UIListLayout_8 = Instance.new("UIListLayout")
+local ScriptDebugTab = Instance.new("ImageLabel")
+local CacheBtn = Instance.new("TextButton")
+local Icon2 = Instance.new("Frame")
+local CopyBtn = Instance.new("TextButton")
+local ImageLabel = Instance.new("ImageLabel")
+local scripttext = Instance.new("TextBox")
+local ErrorText = Instance.new("TextLabel")
+local ExplorerContentsTab = Instance.new("ImageLabel")
+local ExplorerHolder = Instance.new("ImageLabel")
+local ModuleExplorerHolder = Instance.new("ImageLabel")
+local ModuleExplorerContainer = Instance.new("ScrollingFrame")
+local ScriptExplorerHolder = Instance.new("ImageLabel")
+local ScriptExplorerContainer = Instance.new("ScrollingFrame")
+local ValueExplorerHolder = Instance.new("ImageLabel")
+local ValueExplorerContainer = Instance.new("ScrollingFrame")
+local CustomExplorer = Instance.new("ImageLabel")
+local CustomExplorerContainer = Instance.new("ScrollingFrame")
+local UIListLayout_9 = Instance.new("UIListLayout")
+
+-- constant ui stuff
+
+local ConstantTab = Instance.new("ImageLabel")
+local ConstantContaine_2 = Instance.new("ScrollingFrame")
+local ConstantInfo2 = Instance.new("Frame")
+local ConstantIcon_xd = Instance.new("ImageLabel")
+local ConstantName2 = Instance.new("TextLabel")
+local ConstantInfoBtn = Instance.new("TextButton")
+local UIListLayout11 = Instance.new("UIListLayout")
+
+-- value changer for module uo
+
+local ChangeModuleValueTab = Instance.new("ImageLabel")
+local ElementTitle = Instance.new("TextLabel")
+local ChangeModuleValueHolder = Instance.new("ImageLabel")
+local ElementName = Instance.new("Frame")
+local Iconyourmom = Instance.new("ImageLabel")
+local ElementValueText = Instance.new("TextLabel")
+local TextBox = Instance.new("TextBox")
+local ElementTextMain = Instance.new("Frame")
+local Ayboy = Instance.new("ImageLabel")
+local DropDownBtn = Instance.new("TextButton")
+local ElementText = Instance.new("TextLabel")
+local DropDownOptions = Instance.new("Frame")
+local NumberElementBtn = Instance.new("TextButton")
+local icon66969 = Instance.new("ImageLabel")
+local UIListLayout10 = Instance.new("UIListLayout")
+local StringElementBtn = Instance.new("TextButton")
+local dangok = Instance.new("ImageLabel")
+local BooleanElementBtn = Instance.new("TextButton")
+local lol = Instance.new("ImageLabel")
+
+-- upvalue ui stuff
+
+local ChangeUpvalueTab = Instance.new("ImageLabel")
+local ElementTitle2 = Instance.new("TextLabel")
+local ChangeUpvalueHolder = Instance.new("ImageLabel")
+local ElementName2 = Instance.new("Frame")
+local Iconyourmom2 = Instance.new("ImageLabel")
+local ElementValueText2 = Instance.new("TextLabel")
+local TextBox2 = Instance.new("TextBox")
+local ElementTextMain2 = Instance.new("Frame")
+local Ayboy2 = Instance.new("ImageLabel")
+local DropDownBtn2 = Instance.new("TextButton")
+local ElementText2 = Instance.new("TextLabel")
+local DropDownOptions2 = Instance.new("Frame")
+local NumberElementBtn2 = Instance.new("TextButton")
+local icon669692 = Instance.new("ImageLabel")
+local UIListLayout = Instance.new("UIListLayout")
+local StringElementBtn2 = Instance.new("TextButton")
+local dangok2 = Instance.new("ImageLabel")
+local BooleanElementBtn2 = Instance.new("TextButton")
+local lol2 = Instance.new("ImageLabel")
+
+
+-- right module
+
+
+
+local RightModule = Instance.new("Frame")
+local UIListLayout14 = Instance.new("UIListLayout")
+local ExplorerBtn = Instance.new("TextButton")
+local Ifuck = Instance.new("ImageLabel")
+local Label = Instance.new("TextLabel")
+local MaeScriptBtn = Instance.new("TextButton")
+local Ifuck_2 = Instance.new("ImageLabel")
+local Label_2 = Instance.new("TextLabel")
+local ChangeValueBtn = Instance.new("TextButton")
+local Ifuck_3 = Instance.new("ImageLabel")
+local Label_3 = Instance.new("TextLabel")
+local ViewTableBtn = Instance.new("TextButton")
+local Ifuck_4 = Instance.new("ImageLabel")
+local Label_4 = Instance.new("TextLabel")
+local ViewfunctionBtn = Instance.new("TextButton")
+local Ifuck_5 = Instance.new("ImageLabel")
+local Label_5 = Instance.new("TextLabel")
+
+
+local RightScript = Instance.new("Frame")
+local UIListLayout15 = Instance.new("UIListLayout")
+local ViewConstantsBtn = Instance.new("TextButton")
+local Label_23 = Instance.new("TextLabel")
+local ViewfuncsBtn = Instance.new("TextButton")
+local Label_22 = Instance.new("TextLabel")
+local GetPathBtn = Instance.new("TextButton")
+local Ifuck2 = Instance.new("ImageLabel")
+local Label_32 = Instance.new("TextLabel")
+
+local ExplorerContentsContainer = Instance.new("ScrollingFrame")
+local UIListLayout13 = Instance.new("UIListLayout")
+
+
+
+local UpvalueScannerTab = Instance.new("ImageLabel")
+local UpvalueText = Instance.new("TextBox")
+
+
+
+local FilterHolder = Instance.new("Frame")
+local UIListLayout_11 = Instance.new("UIListLayout")
+
+local SearchHalf = Instance.new("Frame")
+local SearchHalfBtn = Instance.new("TextButton")
+local ImageLabel_2 = Instance.new("ImageLabel")
+local SearchByPath = Instance.new("Frame")
+local SearchPathBtn = Instance.new("TextButton")
+local ImageLabel_3 = Instance.new("ImageLabel")
+local Text_6 = Instance.new("TextLabel")
+local ResultsHolder = Instance.new("ImageLabel")
+local Results = Instance.new("ScrollingFrame")
+
+local UIListLayout_12k = Instance.new("UIListLayout")
+
+UIListLayout_12k.Parent = Results
+UIListLayout_12k.HorizontalAlignment = Enum.HorizontalAlignment.Center
+UIListLayout_12k.SortOrder = Enum.SortOrder.LayoutOrder
+UIListLayout_12k.Padding = UDim.new(0, 5)
+
+-- upvalue scanner function core
+
+
+function InitUI()
+
+  clvcore.Name = "clvcore"
+  clvcore.Parent = game.CoreGui
+
+  Body.Name = "Body"
+  Body.Parent = clvcore
+  Body.BackgroundColor3 = Color3.fromRGB(61, 61, 61)
+  Body.BorderSizePixel = 0
+  Body.Position = UDim2.new(0.339341193, 0, 0.232186735, 0)
+  Body.Size = UDim2.new(0, 669, 0, 360)
+
+  Boarder.Name = "Boarder"
+  Boarder.Parent = Body
+  Boarder.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+  Boarder.BackgroundTransparency = 1.000
+  Boarder.Size = UDim2.new(0, 669, 0, 33)
+
+  Title.Name = "Title"
+  Title.Parent = Boarder
+  Title.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+  Title.BackgroundTransparency = 1.000
+  Title.Size = UDim2.new(0, 131, 0, 27)
+  Title.Font = Enum.Font.SourceSans
+  Title.Text = "Clvcore v.3"
+  Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+  Title.TextScaled = true
+  Title.TextSize = 16.000
+  Title.TextWrapped = true
+
+  ExitBtn.Name = "ExitBtn"
+  ExitBtn.Parent = Boarder
+  ExitBtn.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+  ExitBtn.BackgroundTransparency = 1.000
+  ExitBtn.Position = UDim2.new(0.933560491, 0, 0, 0)
+  ExitBtn.Size = UDim2.new(0, 39, 0, 27)
+  ExitBtn.Font = Enum.Font.SourceSansSemibold
+  ExitBtn.Text = "X"
+  ExitBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+  ExitBtn.TextScaled = true
+  ExitBtn.TextSize = 14.000
+  ExitBtn.TextWrapped = true
+
+  ButtonsHolder.Name = "ButtonsHolder"
+  ButtonsHolder.Parent = Body
+  ButtonsHolder.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+  ButtonsHolder.BackgroundTransparency = 1.000
+  ButtonsHolder.Position = UDim2.new(0.0114566367, 0, 0.0944444463, 0)
+  ButtonsHolder.Size = UDim2.new(0, 48, 0, 319)
+  ButtonsHolder.Image = "rbxassetid://2851926732"
+  ButtonsHolder.ImageColor3 = Color3.fromRGB(47, 47, 47)
+  ButtonsHolder.ScaleType = Enum.ScaleType.Slice
+  ButtonsHolder.SliceCenter = Rect.new(10, 10, 10, 10)
+
+  ButtonsContainer.Name = "ButtonsContainer"
+  ButtonsContainer.Parent = ButtonsHolder
+  ButtonsContainer.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+  ButtonsContainer.BackgroundTransparency = 1.000
+  ButtonsContainer.Position = UDim2.new(0, 0, 0.0282131657, 0)
+  ButtonsContainer.Size = UDim2.new(0, 48, 0, 298)
+
+  UIListLayout.Parent = ButtonsContainer
+  UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+  UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+  UIListLayout.Padding = UDim.new(0, 5)
+
+  ModuleBtnHolder.Name = "ModuleBtnHolder"
+  ModuleBtnHolder.Parent = ButtonsContainer
+  ModuleBtnHolder.BackgroundColor3 = Color3.fromRGB(58, 58, 58)
+  ModuleBtnHolder.BorderSizePixel = 0
+  ModuleBtnHolder.Position = UDim2.new(0.0358744413, 0, 0.133333325, 0)
+  ModuleBtnHolder.Size = UDim2.new(0, 22, 0, 22)
+
+  ModuleBtn.Name = "ModuleBtn"
+  ModuleBtn.Parent = ModuleBtnHolder
+  ModuleBtn.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+  ModuleBtn.BackgroundTransparency = 1.000
+  ModuleBtn.Size = UDim2.new(0, 22, 0, 22)
+  ModuleBtn.Image = "rbxassetid://4626291022"
+
+  ScriptScanBtnHolder.Name = "ScriptScanBtnHolder"
+  ScriptScanBtnHolder.Parent = ButtonsContainer
+  ScriptScanBtnHolder.BackgroundColor3 = Color3.fromRGB(58, 58, 58)
+  ScriptScanBtnHolder.BorderSizePixel = 0
+  ScriptScanBtnHolder.Position = UDim2.new(0.0358744413, 0, 0.133333325, 0)
+  ScriptScanBtnHolder.Size = UDim2.new(0, 22, 0, 22)
+
+  ScriptScanBtn.Name = "ScriptScanBtn"
+  ScriptScanBtn.Parent = ScriptScanBtnHolder
+  ScriptScanBtn.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+  ScriptScanBtn.BackgroundTransparency = 1.000
+  ScriptScanBtn.Size = UDim2.new(0, 22, 0, 22)
+  ScriptScanBtn.Image = "rbxassetid://4229796123"
+
+  ConstantBtnHolder.Name = "ConstantBtnHolder"
+  ConstantBtnHolder.Parent = ButtonsContainer
+  ConstantBtnHolder.BackgroundColor3 = Color3.fromRGB(58, 58, 58)
+  ConstantBtnHolder.BorderSizePixel = 0
+  ConstantBtnHolder.Position = UDim2.new(0.0358744413, 0, 0.133333325, 0)
+  ConstantBtnHolder.Size = UDim2.new(0, 22, 0, 22)
+
+  ConstantBtn.Name = "ConstantBtn"
+  ConstantBtn.Parent = ConstantBtnHolder
+  ConstantBtn.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+  ConstantBtn.BackgroundTransparency = 1.000
+  ConstantBtn.Size = UDim2.new(0, 22, 0, 22)
+  ConstantBtn.Image = "rbxassetid://4229794828"
+
+  ValueBtnHolder.Name = "ValueBtnHolder"
+  ValueBtnHolder.Parent = ButtonsContainer
+  ValueBtnHolder.BackgroundColor3 = Color3.fromRGB(58, 58, 58)
+  ValueBtnHolder.BorderSizePixel = 0
+  ValueBtnHolder.Position = UDim2.new(0.0358744413, 0, 0.133333325, 0)
+  ValueBtnHolder.Size = UDim2.new(0, 22, 0, 22)
+
+  ValueBtn.Name = "ValueBtn"
+  ValueBtn.Parent = ValueBtnHolder
+  ValueBtn.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+  ValueBtn.BackgroundTransparency = 1.000
+  ValueBtn.Size = UDim2.new(0, 22, 0, 22)
+  ValueBtn.Image = "rbxassetid://4229882828"
+
+  HttpSpyBtnHolder.Name = "HttpSpyBtnHolder"
+  HttpSpyBtnHolder.Parent = ButtonsContainer
+  HttpSpyBtnHolder.BackgroundColor3 = Color3.fromRGB(58, 58, 58)
+  HttpSpyBtnHolder.BorderSizePixel = 0
+  HttpSpyBtnHolder.Position = UDim2.new(0.0358744413, 0, 0.133333325, 0)
+  HttpSpyBtnHolder.Size = UDim2.new(0, 22, 0, 22)
+
+  HttpSpyBtn.Name = "HttpSpyBtn"
+  HttpSpyBtn.Parent = HttpSpyBtnHolder
+  HttpSpyBtn.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+  HttpSpyBtn.BackgroundTransparency = 1.000
+  HttpSpyBtn.Size = UDim2.new(0, 22, 0, 22)
+  HttpSpyBtn.Image = "rbxassetid://4229784059"
+
+  ExplorerToggleBtnHolder.Name = "ExplorerToggleBtnHolder"
+  ExplorerToggleBtnHolder.Parent = ButtonsContainer
+  ExplorerToggleBtnHolder.BackgroundColor3 = Color3.fromRGB(58, 58, 58)
+  ExplorerToggleBtnHolder.BorderSizePixel = 0
+  ExplorerToggleBtnHolder.Position = UDim2.new(0.0358744413, 0, 0.133333325, 0)
+  ExplorerToggleBtnHolder.Size = UDim2.new(0, 22, 0, 22)
+
+  ExplorerToggleBtn.Name = "ExplorerToggleBtn"
+  ExplorerToggleBtn.Parent = ExplorerToggleBtnHolder
+  ExplorerToggleBtn.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+  ExplorerToggleBtn.BackgroundTransparency = 1.000
+  ExplorerToggleBtn.Size = UDim2.new(0, 22, 0, 22)
+  ExplorerToggleBtn.Image = "rbxassetid://4229791997"
+
+  ScriptDebugBtnHolder.Name = "ScriptDebugBtnHolder"
+  ScriptDebugBtnHolder.Parent = ButtonsContainer
+  ScriptDebugBtnHolder.BackgroundColor3 = Color3.fromRGB(58, 58, 58)
+  ScriptDebugBtnHolder.BorderSizePixel = 0
+  ScriptDebugBtnHolder.Position = UDim2.new(0.0358744413, 0, 0.133333325, 0)
+  ScriptDebugBtnHolder.Size = UDim2.new(0, 22, 0, 22)
+
+  ScriptDebugBtn.Name = "ScriptDebugBtn"
+  ScriptDebugBtn.Parent = ScriptDebugBtnHolder
+  ScriptDebugBtn.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+  ScriptDebugBtn.BackgroundTransparency = 1.000
+  ScriptDebugBtn.Size = UDim2.new(0, 22, 0, 22)
+  ScriptDebugBtn.Image = "rbxassetid://4229793132"
+
+  TabsHolder.Name = "TabsHolder"
+  TabsHolder.Parent = Body
+  TabsHolder.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+  TabsHolder.BackgroundTransparency = 1.000
+  TabsHolder.Position = UDim2.new(0.0945667252, 0, 0.0944444463, 0)
+  TabsHolder.Size = UDim2.new(0, 420, 0, 319)
+  TabsHolder.Image = "rbxassetid://2851926732"
+  TabsHolder.ImageColor3 = Color3.fromRGB(47, 47, 47)
+  TabsHolder.ScaleType = Enum.ScaleType.Slice
+  TabsHolder.SliceCenter = Rect.new(10, 10, 10, 10)
+
+  HomeTab.Name = "HomeTab"
+  HomeTab.Parent = TabsHolder
+  HomeTab.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+  HomeTab.BackgroundTransparency = 1.000
+  HomeTab.Position = UDim2.new(-0.000671371818, 0, -0.00273423642, 0)
+  HomeTab.Size = UDim2.new(0, 420, 0, 319)
+  HomeTab.Visible = true
+  HomeTab.Image = "rbxassetid://2851926732"
+  HomeTab.ImageColor3 = Color3.fromRGB(47, 47, 47)
+  HomeTab.ScaleType = Enum.ScaleType.Slice
+  HomeTab.SliceCenter = Rect.new(10, 10, 10, 10)
+
+  HomeTextlol.Name = "HomeTextlol"
+  HomeTextlol.Parent = HomeTab
+  HomeTextlol.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+  HomeTextlol.BackgroundTransparency = 1.000
+  HomeTextlol.Position = UDim2.new(0.109563917, 0, 0.238244504, 0)
+  HomeTextlol.Size = UDim2.new(0, 327, 0, 50)
+  HomeTextlol.Font = Enum.Font.SourceSans
+  HomeTextlol.Text = "insert unfunny text here"
+  HomeTextlol.TextColor3 = Color3.fromRGB(255, 255, 255)
+  HomeTextlol.TextScaled = true
+  HomeTextlol.TextSize = 14.000
+  HomeTextlol.TextWrapped = true
+
+  ModuleTab.Name = "ModuleTab"
+  ModuleTab.Parent = TabsHolder
+  ModuleTab.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+  ModuleTab.BackgroundTransparency = 1.000
+  ModuleTab.BorderColor3 = Color3.fromRGB(27, 42, 53)
+  ModuleTab.Position = UDim2.new(-0.000671371818, 0, -0.00273423642, 0)
+  ModuleTab.Size = UDim2.new(0, 420, 0, 319)
+  ModuleTab.Visible = false
+  ModuleTab.Image = "rbxassetid://2851926732"
+  ModuleTab.ImageColor3 = Color3.fromRGB(47, 47, 47)
+  ModuleTab.ScaleType = Enum.ScaleType.Slice
+  ModuleTab.SliceCenter = Rect.new(10, 10, 10, 10)
+
+  ModuleValueContainer.Name = "ModuleValueContainer"
+  ModuleValueContainer.Parent = ModuleTab
+  ModuleValueContainer.Active = true
+  ModuleValueContainer.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+  ModuleValueContainer.BackgroundTransparency = 1.000
+  ModuleValueContainer.BorderSizePixel = 0
+  ModuleValueContainer.Position = UDim2.new(0.000671386719, 0, 0.0309474077, 0)
+  ModuleValueContainer.Size = UDim2.new(0, 419, 0, 309)
+  ModuleValueContainer.Visible = false
+  ModuleValueContainer.ScrollBarThickness = 5
+  ModuleValueContainer.CanvasSize = UDim2.new(0,0,0,0)
+
+  UIListLayout_2.Parent = ModuleValueContainer
+  UIListLayout_2.HorizontalAlignment = Enum.HorizontalAlignment.Center
+  UIListLayout_2.SortOrder = Enum.SortOrder.LayoutOrder
+  UIListLayout_2.Padding = UDim.new(0, 5)
+
+  ModuleContainer.Name = "ModuleContainer"
+  ModuleContainer.Parent = ModuleTab
+  ModuleContainer.Active = true
+  ModuleContainer.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+  ModuleContainer.BackgroundTransparency = 1.000
+  ModuleContainer.BorderSizePixel = 0
+  ModuleContainer.Position = UDim2.new(0.0238095243, 0, 0.0309474077, 0)
+  ModuleContainer.Size = UDim2.new(0, 410, 0, 309)
+  ModuleContainer.ScrollBarThickness = 7
+  ModuleContainer.CanvasSize = UDim2.new(0,0,0,0)
+
+  UIListLayout_3.Parent = ModuleContainer
+  UIListLayout_3.SortOrder = Enum.SortOrder.LayoutOrder
+  UIListLayout_3.Padding = UDim.new(0, 5)
+
+  ScriptScanTab.Name = "ScriptScanTab"
+  ScriptScanTab.Parent = TabsHolder
+  ScriptScanTab.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+  ScriptScanTab.BackgroundTransparency = 1.000
+  ScriptScanTab.Position = UDim2.new(-0.000671371818, 0, -0.00273423642, 0)
+  ScriptScanTab.Size = UDim2.new(0, 420, 0, 319)
+  ScriptScanTab.Visible = false
+  ScriptScanTab.Image = "rbxassetid://2851926732"
+  ScriptScanTab.ImageColor3 = Color3.fromRGB(47, 47, 47)
+  ScriptScanTab.ScaleType = Enum.ScaleType.Slice
+  ScriptScanTab.SliceCenter = Rect.new(10, 10, 10, 10)
+
+  ScriptContainer.Name = "ScriptContainer"
+  ScriptContainer.Parent = ScriptScanTab
+  ScriptContainer.Active = true
+  ScriptContainer.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+  ScriptContainer.BackgroundTransparency = 1.000
+  ScriptContainer.BorderSizePixel = 0
+  ScriptContainer.Position = UDim2.new(0.0238095243, 0, 0.0999129266, 0)
+  ScriptContainer.Size = UDim2.new(0, 410, 0, 287)
+  ScriptContainer.ScrollBarThickness = 7
+  ScriptContainer.CanvasSize = UDim2.new(0,0,0,0)
+
+  UIListLayout_4.Parent = ScriptContainer
+  UIListLayout_4.SortOrder = Enum.SortOrder.LayoutOrder
+  UIListLayout_4.Padding = UDim.new(0, 5)
+
+  ScriptConstantContainer.Name = "ScriptConstantContainer"
+  ScriptConstantContainer.Parent = ScriptScanTab
+  ScriptConstantContainer.Active = true
+  ScriptConstantContainer.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+  ScriptConstantContainer.BackgroundTransparency = 1.000
+  ScriptConstantContainer.BorderSizePixel = 0
+  ScriptConstantContainer.Position = UDim2.new(0.000671386719, 0, 0.0309474077, 0)
+  ScriptConstantContainer.Size = UDim2.new(0, 419, 0, 309)
+  ScriptConstantContainer.Visible = false
+  ScriptConstantContainer.ScrollBarThickness = 5
+  ScriptConstantContainer.CanvasSize = UDim2.new(0,0,0,0)
+
+  UIListLayout_5.Parent = ScriptConstantContainer
+  UIListLayout_5.HorizontalAlignment = Enum.HorizontalAlignment.Center
+  UIListLayout_5.SortOrder = Enum.SortOrder.LayoutOrder
+  UIListLayout_5.Padding = UDim.new(0, 5)
+
+  Text.Name = "Text"
+  Text.Parent = ScriptScanTab
+  Text.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+  Text.BackgroundTransparency = 1.000
+  Text.Size = UDim2.new(0, 68, 0, 31)
+  Text.Font = Enum.Font.SourceSans
+  Text.Text = "Name"
+  Text.TextColor3 = Color3.fromRGB(255, 255, 255)
+  Text.TextSize = 18.000
+
+  Text_2.Name = "Text"
+  Text_2.Parent = ScriptScanTab
+  Text_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+  Text_2.BackgroundTransparency = 1.000
+  Text_2.Position = UDim2.new(0.802380979, 0, 0, 0)
+  Text_2.Size = UDim2.new(0, 68, 0, 31)
+  Text_2.Font = Enum.Font.SourceSans
+  Text_2.Text = "Constants"
+  Text_2.TextColor3 = Color3.fromRGB(255, 255, 255)
+  Text_2.TextSize = 18.000
+
+  Text_3.Name = "Text"
+  Text_3.Parent = ScriptScanTab
+  Text_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+  Text_3.BackgroundTransparency = 1.000
+  Text_3.Position = UDim2.new(0.621428609, 0, 0, 0)
+  Text_3.Size = UDim2.new(0, 68, 0, 31)
+  Text_3.Font = Enum.Font.SourceSans
+  Text_3.Text = "Protos"
+  Text_3.TextColor3 = Color3.fromRGB(255, 255, 255)
+  Text_3.TextSize = 18.000
+
+  ScriptFunctionContainer.Name = "ScriptFunctionContainer"
+  ScriptFunctionContainer.Parent = ScriptScanTab
+  ScriptFunctionContainer.Active = true
+  ScriptFunctionContainer.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+  ScriptFunctionContainer.BackgroundTransparency = 1.000
+  ScriptFunctionContainer.BorderSizePixel = 0
+  ScriptFunctionContainer.Position = UDim2.new(0.000671386719, 0, 0.0309474077, 0)
+  ScriptFunctionContainer.Size = UDim2.new(0, 419, 0, 309)
+  ScriptFunctionContainer.Visible = false
+  ScriptFunctionContainer.ScrollBarThickness = 5
+  ScriptFunctionContainer.CanvasSize = UDim2.new(0,0,0,0)
+
+  UIListLayout_6.Parent = ScriptFunctionContainer
+  UIListLayout_6.HorizontalAlignment = Enum.HorizontalAlignment.Center
+  UIListLayout_6.SortOrder = Enum.SortOrder.LayoutOrder
+  UIListLayout_6.Padding = UDim.new(0, 5)
+
+  HttpSpyTab.Name = "HttpSpyTab"
+  HttpSpyTab.Parent = TabsHolder
+  HttpSpyTab.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+  HttpSpyTab.BackgroundTransparency = 1.000
+  HttpSpyTab.Position = UDim2.new(-0.000671371818, 0, -0.00273423642, 0)
+  HttpSpyTab.Size = UDim2.new(0, 420, 0, 319)
+  HttpSpyTab.Visible = false
+  HttpSpyTab.Image = "rbxassetid://2851926732"
+  HttpSpyTab.ImageColor3 = Color3.fromRGB(47, 47, 47)
+  HttpSpyTab.ScaleType = Enum.ScaleType.Slice
+  HttpSpyTab.SliceCenter = Rect.new(10, 10, 10, 10)
+
+  ValueTab.Name = "ValueTab"
+  ValueTab.Parent = TabsHolder
+  ValueTab.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+  ValueTab.BackgroundTransparency = 1.000
+  ValueTab.Position = UDim2.new(-0.000671371818, 0, -0.00273423642, 0)
+  ValueTab.Size = UDim2.new(0, 420, 0, 319)
+  ValueTab.Visible = false
+  ValueTab.Image = "rbxassetid://2851926732"
+  ValueTab.ImageColor3 = Color3.fromRGB(47, 47, 47)
+  ValueTab.ScaleType = Enum.ScaleType.Slice
+  ValueTab.SliceCenter = Rect.new(10, 10, 10, 10)
+
+  ValueContainer.Name = "ValueContainer"
+  ValueContainer.Parent = ValueTab
+  ValueContainer.Active = true
+  ValueContainer.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+  ValueContainer.BackgroundTransparency = 1.000
+  ValueContainer.BorderSizePixel = 0
+  ValueContainer.Position = UDim2.new(0, 0, 0.0971786827, 0)
+  ValueContainer.Size = UDim2.new(0, 420, 0, 287)
+  ValueContainer.ScrollBarThickness = 5
+  ValueContainer.CanvasSize = UDim2.new(0,0,0,0)
+
+  UIListLayout_7.Parent = ValueContainer
+  UIListLayout_7.HorizontalAlignment = Enum.HorizontalAlignment.Center
+  UIListLayout_7.SortOrder = Enum.SortOrder.LayoutOrder
+  UIListLayout_7.Padding = UDim.new(0, 5)
+
+  Text_4.Name = "Text"
+  Text_4.Parent = ValueTab
+  Text_4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+  Text_4.BackgroundTransparency = 1.000
+  Text_4.Size = UDim2.new(0, 68, 0, 31)
+  Text_4.Font = Enum.Font.SourceSans
+  Text_4.Text = "Name"
+  Text_4.TextColor3 = Color3.fromRGB(255, 255, 255)
+  Text_4.TextSize = 18.000
+
+  Text_5.Name = "Text"
+  Text_5.Parent = ValueTab
+  Text_5.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+  Text_5.BackgroundTransparency = 1.000
+  Text_5.Position = UDim2.new(0.795238137, 0, 0, 0)
+  Text_5.Size = UDim2.new(0, 68, 0, 31)
+  Text_5.Font = Enum.Font.SourceSans
+  Text_5.Text = "Value"
+  Text_5.TextColor3 = Color3.fromRGB(255, 255, 255)
+  Text_5.TextSize = 18.000
+
+  ValueValueContainer.Name = "ValueValueContainer"
+  ValueValueContainer.Parent = ValueTab
+  ValueValueContainer.Active = true
+  ValueValueContainer.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+  ValueValueContainer.BackgroundTransparency = 1.000
+  ValueValueContainer.BorderSizePixel = 0
+  ValueValueContainer.Position = UDim2.new(0.000671386719, 0, 0.0309474077, 0)
+  ValueValueContainer.Size = UDim2.new(0, 419, 0, 309)
+  ValueValueContainer.Visible = false
+  ValueValueContainer.ScrollBarThickness = 5
+  ValueValueContainer.CanvasSize = UDim2.new(0,0,0,0)
+
+  UIListLayout_8.Parent = ValueValueContainer
+  UIListLayout_8.HorizontalAlignment = Enum.HorizontalAlignment.Center
+  UIListLayout_8.SortOrder = Enum.SortOrder.LayoutOrder
+  UIListLayout_8.Padding = UDim.new(0, 5)
+
+  ScriptDebugTab.Name = "ScriptDebugTab"
+  ScriptDebugTab.Parent = TabsHolder
+  ScriptDebugTab.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+  ScriptDebugTab.BackgroundTransparency = 1.000
+  ScriptDebugTab.Position = UDim2.new(-0.000671371818, 0, -0.00273423642, 0)
+  ScriptDebugTab.Size = UDim2.new(0, 420, 0, 319)
+  ScriptDebugTab.Visible = false
+  ScriptDebugTab.Image = "rbxassetid://2851926732"
+  ScriptDebugTab.ImageColor3 = Color3.fromRGB(47, 47, 47)
+  ScriptDebugTab.ScaleType = Enum.ScaleType.Slice
+  ScriptDebugTab.SliceCenter = Rect.new(10, 10, 10, 10)
+
+  CacheBtn.Name = "CacheBtn"
+  CacheBtn.Parent = ScriptDebugTab
+  CacheBtn.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+  CacheBtn.BorderSizePixel = 0
+  CacheBtn.Position = UDim2.new(0, 0, 0.00523560215, 0)
+  CacheBtn.Size = UDim2.new(0, 96, 0, 27)
+  CacheBtn.Font = Enum.Font.SourceSansSemibold
+  CacheBtn.Text = "                 Run Script"
+  CacheBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+  CacheBtn.TextSize = 16.000
+  CacheBtn.TextXAlignment = Enum.TextXAlignment.Right
+
+  Icon2.Name = "Icon2"
+  Icon2.Parent = CacheBtn
+  Icon2.BackgroundColor3 = Color3.fromRGB(66, 172, 4)
+  Icon2.BorderColor3 = Color3.fromRGB(255, 255, 255)
+  Icon2.Position = UDim2.new(0.090909116, 0, 0.258823514, 0)
+  Icon2.Size = UDim2.new(0, 17, 0, 15)
+
+  CopyBtn.Name = "CopyBtn"
+  CopyBtn.Parent = ScriptDebugTab
+  CopyBtn.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+  CopyBtn.BorderSizePixel = 0
+  CopyBtn.Position = UDim2.new(0.276041836, 0, 0.00523560215, 0)
+  CopyBtn.Size = UDim2.new(0, 99, 0, 27)
+  CopyBtn.Font = Enum.Font.SourceSansSemibold
+  CopyBtn.Text = "                 Copy script"
+  CopyBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+  CopyBtn.TextSize = 16.000
+  CopyBtn.TextXAlignment = Enum.TextXAlignment.Right
+
+  ImageLabel.Parent = CopyBtn
+  ImageLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+  ImageLabel.BackgroundTransparency = 1.000
+  ImageLabel.Position = UDim2.new(0.0635745674, 0, 0.184749454, 0)
+  ImageLabel.Size = UDim2.new(0, 21, 0, 19)
+  ImageLabel.Image = "rbxassetid://4229796123"
+
+  scripttext.Name = "scripttext"
+  scripttext.Parent = ScriptDebugTab
+  scripttext.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+  scripttext.BorderSizePixel = 0
+  scripttext.Position = UDim2.new(0.0207792744, 0, 0.0971786827, 0)
+  scripttext.Size = UDim2.new(0, 400, 0, 258)
+  scripttext.Font = Enum.Font.Code
+  scripttext.PlaceholderText = "put script here"
+  scripttext.Text = ""
+  scripttext.TextColor3 = Color3.fromRGB(255, 255, 255)
+  scripttext.TextSize = 14.000
+  scripttext.TextXAlignment = Enum.TextXAlignment.Left
+  scripttext.TextYAlignment = Enum.TextYAlignment.Top
+
+  ErrorText.Name = "ErrorText"
+  ErrorText.Parent = ScriptDebugTab
+  ErrorText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+  ErrorText.BackgroundTransparency = 1.000
+  ErrorText.Position = UDim2.new(0.0207792744, 0, 0.905956209, 0)
+  ErrorText.Size = UDim2.new(0, 411, 0, 30)
+  ErrorText.Font = Enum.Font.SourceSans
+  ErrorText.Text = "Error will appear here"
+  ErrorText.TextColor3 = Color3.fromRGB(255, 25, 59)
+  ErrorText.TextSize = 16.000
+  ErrorText.TextWrapped = true
+  ErrorText.TextXAlignment = Enum.TextXAlignment.Left
+
+  ExplorerContentsTab.Name = "ExplorerContentsTab"
+  ExplorerContentsTab.Parent = TabsHolder
+  ExplorerContentsTab.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+  ExplorerContentsTab.BackgroundTransparency = 1.000
+  ExplorerContentsTab.Position = UDim2.new(-0.000671371818, 0, -0.00273423642, 0)
+  ExplorerContentsTab.Size = UDim2.new(0, 420, 0, 319)
+  ExplorerContentsTab.Visible = false
+  ExplorerContentsTab.Image = "rbxassetid://2851926732"
+  ExplorerContentsTab.ImageColor3 = Color3.fromRGB(47, 47, 47)
+  ExplorerContentsTab.ScaleType = Enum.ScaleType.Slice
+	  ExplorerContentsTab.SliceCenter = Rect.new(10, 10, 10, 10)
+	
+	ExplorerContentsContainer.Name = "ExplorerContentsContainer"
+ExplorerContentsContainer.Parent = ExplorerContentsTab
+ExplorerContentsContainer.Active = true
+ExplorerContentsContainer.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ExplorerContentsContainer.BorderSizePixel = 0
+ExplorerContentsContainer.Position = UDim2.new(0.0238095243, 0, 0.0376299918, 0)
+ExplorerContentsContainer.Size = UDim2.new(0, 403, 0, 299)
+ExplorerContentsContainer.CanvasSize = UDim2.new(0, 0, 0, 0)
+	ExplorerContentsContainer.ScrollBarThickness = 4
+	ExplorerContentsContainer.BackgroundTransparency = 1
+
+UIListLayout13.Parent = ExplorerContentsContainer
+UIListLayout13.HorizontalAlignment = Enum.HorizontalAlignment.Center
+UIListLayout13.SortOrder = Enum.SortOrder.LayoutOrder
+UIListLayout13.Padding = UDim.new(0, 5)
+
+ 
+
+
+  -- Element UI
+
+
+
+
+
+
+
+end -- end of InitUI
+
+
+
+
+
+
+
+
+
+
+function InitSecondUIS()
+	
+	 ExplorerHolder.Name = "ExplorerHolder"
+  ExplorerHolder.Parent = Body
+  ExplorerHolder.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+  ExplorerHolder.BackgroundTransparency = 1.000
+  ExplorerHolder.Position = UDim2.new(0.737121463, 0, 0.0944444463, 0)
+  ExplorerHolder.Size = UDim2.new(0, 165, 0, 319)
+  ExplorerHolder.Image = "rbxassetid://2851926732"
+  ExplorerHolder.ImageColor3 = Color3.fromRGB(47, 47, 47)
+  ExplorerHolder.ScaleType = Enum.ScaleType.Slice
+  ExplorerHolder.SliceCenter = Rect.new(10, 10, 10, 10)
+
+  ModuleExplorerHolder.Name = "ModuleExplorerHolder"
+  ModuleExplorerHolder.Parent = ExplorerHolder
+  ModuleExplorerHolder.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+  ModuleExplorerHolder.BackgroundTransparency = 1.000
+  ModuleExplorerHolder.Position = UDim2.new(-0.00227245688, 0, -0.00273423642, 0)
+  ModuleExplorerHolder.Size = UDim2.new(0, 165, 0, 319)
+  ModuleExplorerHolder.Visible = false
+  ModuleExplorerHolder.Image = "rbxassetid://2851926732"
+  ModuleExplorerHolder.ImageColor3 = Color3.fromRGB(47, 47, 47)
+  ModuleExplorerHolder.ScaleType = Enum.ScaleType.Slice
+  ModuleExplorerHolder.SliceCenter = Rect.new(10, 10, 10, 10)
+
+  ModuleExplorerContainer.Name = "ModuleExplorerContainer"
+  ModuleExplorerContainer.Parent = ModuleExplorerHolder
+  ModuleExplorerContainer.Active = true
+  ModuleExplorerContainer.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+  ModuleExplorerContainer.BackgroundTransparency = 1.000
+  ModuleExplorerContainer.BorderSizePixel = 0
+  ModuleExplorerContainer.Position = UDim2.new(0.0022727272, 0, 0, 0)
+  ModuleExplorerContainer.Size = UDim2.new(0, 164, 0, 319)
+  ModuleExplorerContainer.CanvasSize = UDim2.new(0, 0, 0, 0)
+  ModuleExplorerContainer.ScrollBarThickness = 0
+
+  ConstantTab.Name = "ConstantTab"
+  ConstantTab.Parent = TabsHolder
+  ConstantTab.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+  ConstantTab.BackgroundTransparency = 1.000
+  ConstantTab.BorderColor3 = Color3.fromRGB(27, 42, 53)
+  ConstantTab.Position = UDim2.new(-0.000671371818, 0, -0.00273423642, 0)
+  ConstantTab.Size = UDim2.new(0, 420, 0, 319)
+  ConstantTab.Visible = false
+  ConstantTab.Image = "rbxassetid://2851926732"
+  ConstantTab.ImageColor3 = Color3.fromRGB(47, 47, 47)
+  ConstantTab.ScaleType = Enum.ScaleType.Slice
+  ConstantTab.SliceCenter = Rect.new(10, 10, 10, 10)
+
+  ConstantContaine_2.Name = "ConstantContaine_2"
+  ConstantContaine_2.Parent = ConstantTab
+  ConstantContaine_2.Active = true
+  ConstantContaine_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+  ConstantContaine_2.BackgroundTransparency = 1.000
+  ConstantContaine_2.BorderSizePixel = 0
+  ConstantContaine_2.Position = UDim2.new(0.0238095243, 0, 0.0309474077, 0)
+  ConstantContaine_2.Size = UDim2.new(0, 410, 0, 309)
+  ConstantContaine_2.ScrollBarThickness = 7
+  ConstantContaine_2.CanvasSize = UDim2.new(0,0,0,0)
+
+  UIListLayout11.Parent = ConstantContaine_2
+  UIListLayout11.SortOrder = Enum.SortOrder.LayoutOrder
+  UIListLayout11.Padding = UDim.new(0, 5)
+
+
+  ScriptExplorerHolder.Name = "ScriptExplorerHolder"
+  ScriptExplorerHolder.Parent = ExplorerHolder
+  ScriptExplorerHolder.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+  ScriptExplorerHolder.BackgroundTransparency = 1.000
+  ScriptExplorerHolder.Position = UDim2.new(-0.00227245688, 0, -0.00273423642, 0)
+  ScriptExplorerHolder.Size = UDim2.new(0, 165, 0, 319)
+  ScriptExplorerHolder.Visible = false
+  ScriptExplorerHolder.Image = "rbxassetid://2851926732"
+  ScriptExplorerHolder.ImageColor3 = Color3.fromRGB(47, 47, 47)
+  ScriptExplorerHolder.ScaleType = Enum.ScaleType.Slice
+  ScriptExplorerHolder.SliceCenter = Rect.new(10, 10, 10, 10)
+
+  ScriptExplorerContainer.Name = "ScriptExplorerContainer"
+  ScriptExplorerContainer.Parent = ScriptExplorerHolder
+  ScriptExplorerContainer.Active = true
+  ScriptExplorerContainer.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+  ScriptExplorerContainer.BackgroundTransparency = 1.000
+  ScriptExplorerContainer.BorderSizePixel = 0
+  ScriptExplorerContainer.Position = UDim2.new(0.0022727272, 0, 0, 0)
+  ScriptExplorerContainer.Size = UDim2.new(0, 164, 0, 319)
+  ScriptExplorerContainer.CanvasSize = UDim2.new(0, 0, 0, 0)
+  ScriptExplorerContainer.ScrollBarThickness = 0
+
+
+
+  ValueExplorerHolder.Name = "ValueExplorerHolder"
+  ValueExplorerHolder.Parent = ExplorerHolder
+  ValueExplorerHolder.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+  ValueExplorerHolder.BackgroundTransparency = 1.000
+  ValueExplorerHolder.Position = UDim2.new(-0.00227245688, 0, -0.00273423642, 0)
+  ValueExplorerHolder.Size = UDim2.new(0, 165, 0, 319)
+  ValueExplorerHolder.Visible = false
+  ValueExplorerHolder.Image = "rbxassetid://2851926732"
+  ValueExplorerHolder.ImageColor3 = Color3.fromRGB(47, 47, 47)
+  ValueExplorerHolder.ScaleType = Enum.ScaleType.Slice
+  ValueExplorerHolder.SliceCenter = Rect.new(10, 10, 10, 10)
+
+  ValueExplorerContainer.Name = "ValueExplorerContainer"
+  ValueExplorerContainer.Parent = ValueExplorerHolder
+  ValueExplorerContainer.Active = true
+  ValueExplorerContainer.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+  ValueExplorerContainer.BackgroundTransparency = 1.000
+  ValueExplorerContainer.BorderSizePixel = 0
+  ValueExplorerContainer.Position = UDim2.new(0.0022727272, 0, 0, 0)
+  ValueExplorerContainer.Size = UDim2.new(0, 164, 0, 319)
+  ValueExplorerContainer.CanvasSize = UDim2.new(0, 0, 0, 0)
+  ValueExplorerContainer.ScrollBarThickness = 0
+
+
+
+  CustomExplorer.Name = "CustomExplorer"
+  CustomExplorer.Parent = ExplorerHolder
+  CustomExplorer.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+  CustomExplorer.BackgroundTransparency = 1.000
+  CustomExplorer.Position = UDim2.new(-0.00227245688, 0, -0.00273423642, 0)
+  CustomExplorer.Size = UDim2.new(0, 165, 0, 319)
+  CustomExplorer.Image = "rbxassetid://2851926732"
+  CustomExplorer.ImageColor3 = Color3.fromRGB(47, 47, 47)
+  CustomExplorer.ScaleType = Enum.ScaleType.Slice
+  CustomExplorer.SliceCenter = Rect.new(10, 10, 10, 10)
+
+  CustomExplorerContainer.Name = "CustomExplorerContainer"
+  CustomExplorerContainer.Parent = CustomExplorer
+  CustomExplorerContainer.Active = true
+  CustomExplorerContainer.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+  CustomExplorerContainer.BackgroundTransparency = 1.000
+  CustomExplorerContainer.BorderSizePixel = 0
+  CustomExplorerContainer.Position = UDim2.new(0.044696968, 0, 0.0309474077, 0)
+  CustomExplorerContainer.Size = UDim2.new(0, 157, 0, 309)
+  CustomExplorerContainer.CanvasSize = UDim2.new(0, 0, 0, 0)
+  CustomExplorerContainer.ScrollBarThickness = 4
+
+  UIListLayout_9.Parent = CustomExplorerContainer
+  UIListLayout_9.SortOrder = Enum.SortOrder.LayoutOrder
+
+
+end
+
+
+
+Body.Active = true
+Body.Draggable = true
+
+
+ExitBtn.MouseButton1Click:connect(function()
+clvcore:Destroy()
+end)
+
+
+
+
+
+
+InitUI()
+InitSecondUIS()
+ButtonScripts()
+ElementUICreation()
+UpvalueScanner()
