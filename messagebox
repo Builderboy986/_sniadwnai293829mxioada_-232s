@@ -1,0 +1,54 @@
+function MessageBoxInitUI(msg)
+  if game.CoreGui:FindFirstChild("MessageBox") then
+  else
+
+
+    local MessageBox = Instance.new("ScreenGui")
+    local MessageBoxMain = Instance.new("Frame")
+    local MessageBoxText = Instance.new("TextLabel")
+    local MessageBoxClose = Instance.new("TextButton")
+
+    --Properties:
+
+    MessageBox.Name = "MessageBox"
+    MessageBox.Parent = game.CoreGui
+    MessageBox.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+    MessageBoxMain.Name = "MessageBoxMain"
+    MessageBoxMain.Parent = MessageBox
+    MessageBoxMain.Active = true
+    MessageBoxMain.BackgroundColor3 = Color3.fromRGB(62, 62, 62)
+    MessageBoxMain.BorderSizePixel = 0
+    MessageBoxMain.Position = UDim2.new(0.484773159, 0, 0.357493848, 0)
+    MessageBoxMain.Size = UDim2.new(0, 242, 0, 73)
+    MessageBoxMain.Draggable = true
+
+    MessageBoxText.Name = "MessageBoxText"
+    MessageBoxText.Parent = MessageBoxMain
+    MessageBoxText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    MessageBoxText.BackgroundTransparency = 1.000
+    MessageBoxText.Size = UDim2.new(0, 242, 0, 41)
+    MessageBoxText.Font = Enum.Font.SourceSans
+    MessageBoxText.Text = tostring(msg)
+    MessageBoxText.TextColor3 = Color3.fromRGB(255, 255, 255)
+    MessageBoxText.TextSize = 16.000
+
+    MessageBoxClose.Name = "MessageBoxClose"
+    MessageBoxClose.Parent = MessageBoxMain
+    MessageBoxClose.BackgroundColor3 = Color3.fromRGB(54, 54, 54)
+    MessageBoxClose.Position = UDim2.new(0.280991733, 0, 0.552654088, 0)
+    MessageBoxClose.Size = UDim2.new(0, 105, 0, 26)
+    MessageBoxClose.Font = Enum.Font.SourceSans
+    MessageBoxClose.Text = "OK"
+    MessageBoxClose.MouseButton1Click:connect(function()
+    MessageBox:Destroy()
+
+    end)
+
+
+    MessageBoxClose.TextColor3 = Color3.fromRGB(255, 255, 255)
+    MessageBoxClose.TextScaled = true
+    MessageBoxClose.TextSize = 14.000
+    MessageBoxClose.TextWrapped = true
+  end
+end
