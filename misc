@@ -1,0 +1,516 @@
+function ButtonScripts()
+
+	  ModuleBtn.MouseButton1Click:connect(function()
+		ClearModuleCon()
+
+  if ModuleValueContainer.Visible == true then
+			    ClearModuleValCon()
+			ModuleContainer.Visible = true
+  end
+
+  ModuleTab.Visible = true
+  ConstantTab.Visible = false
+  ValueTab.Visible = false
+  ScriptScanTab.Visible = false
+  ExplorerContentsTab.Visible = false
+  HttpSpyTab.Visible = false
+		  ScriptDebugTab.Visible = false
+		UpvalueScannerTab.Visible = false
+  ModuleFunction()
+  end)
+
+
+	  ScriptScanBtn.MouseButton1Click:connect(function()
+		ScriptConstantContainer.Visible = false
+		ClearScriptconsCon()
+		ClearScriptFuncCon()
+		ScriptFunctionContainer.Visible = false
+		Text_3.Visible = true
+				Text_2.Visible = true
+				Text.Visible = true
+		ClearScriptCon()
+		ScriptFunction()
+  ModuleTab.Visible = false
+  ConstantTab.Visible = false
+  ValueTab.Visible = false
+  ScriptScanTab.Visible = true
+  ExplorerContentsTab.Visible = false
+  HttpSpyTab.Visible = false
+		  ScriptDebugTab.Visible = false
+		UpvalueScannerTab.Visible = false
+  end)
+
+
+  HttpSpyBtn.MouseButton1Click:connect(function()
+  ModuleTab.Visible = false
+  ConstantTab.Visible = false
+  ValueTab.Visible = false
+  ScriptScanTab.Visible = false
+  ExplorerContentsTab.Visible = false
+		  HttpSpyTab.Visible = false
+		UpvalueScannerTab.Visible = true
+  ScriptDebugTab.Visible = false
+  end)
+
+	  ValueBtn.MouseButton1Click:connect(function()
+		ClearValCon()
+		ValueExplorer()
+  ModuleTab.Visible = false
+  ConstantTab.Visible = false
+  ValueTab.Visible = true
+  ScriptScanTab.Visible = false
+  ExplorerContentsTab.Visible = false
+  HttpSpyTab.Visible = false
+  ScriptDebugTab.Visible = false
+  end)
+
+  ConstantBtn.MouseButton1Click:connect(function()
+  ModuleTab.Visible = false
+  ConstantTab.Visible = true
+  ValueTab.Visible = false
+  ScriptScanTab.Visible = false
+  ExplorerContentsTab.Visible = false
+  HttpSpyTab.Visible = false
+		  ScriptDebugTab.Visible = false
+		
+		UpvalueScannerTab.Visible = false
+  end)
+
+	  ExplorerToggleBtn.MouseButton1Click:connect(function()
+  ModuleTab.Visible = false
+  ConstantTab.Visible = false
+  ValueTab.Visible = false
+  ScriptScanTab.Visible = false
+  ExplorerContentsTab.Visible = true
+  HttpSpyTab.Visible = false
+		  ScriptDebugTab.Visible = false
+		UpvalueScannerTab.Visible = false
+  end)
+
+  ScriptDebugBtn.MouseButton1Click:connect(function()
+  ModuleTab.Visible = false
+  ConstantTab.Visible = false
+  ValueTab.Visible = false
+  ScriptScanTab.Visible = false
+  ExplorerContentsTab.Visible = false
+  HttpSpyTab.Visible = false
+		  ScriptDebugTab.Visible = true
+		UpvalueScannerTab.Visible = false
+  end)
+
+end
+
+function _G.ClvcoreDeleteAll()
+	for i,v in pairs(CustomExplorerContainer:GetDescendants()) do
+		if v.ClassName == "Frame" then
+			v:Destroy()
+		end
+	end
+end
+
+function _G.ClvcoreDelete(Name, Content)
+	for i,v in pairs(CustomExplorerContainer:GetDescendants()) do
+		if v.ClassName == "TextLabel" then
+			if v.Text == Name then
+				
+				
+				for a,b in pairs(ExplorerContentsContainer:GetDescendants()) do
+					if b.ClassName == "TextBox" then
+						if b.Text == Name then
+							b:Destroy()
+						end
+					end
+				end
+				
+				v.Parent:Destroy()
+			end
+		end
+	end
+	CustomExplorerContainer.CanvasSize = CustomExplorerContainer.CanvasSize - UDim2.new(0,0,0.2,0)
+	if CustomExplorerContainer:GetChildren() == nil then
+		CustomExplorerContainer.CanvasSize = UDim2.new(0,0,0,0)
+	end
+
+	
+end
+
+function _G.ClvcoreExplorerUpvaluesAdd(index, name, value)
+	
+	for i,v in pairs (CustomExplorerContainer:GetDescendants()) do
+		if v.ClassName == "TextLabel" then
+			if v.Text == name then
+				--MessageBoxInitUI(name.. " Already exists in explorer")
+				return
+			end
+		end
+	end
+	
+	
+	local Custom = Instance.new("Frame", CustomExplorerContainer)
+local CustomIcon = Instance.new("ImageLabel")
+local CustomText = Instance.new("TextLabel")
+	local CustomBtn = Instance.new("TextButton")
+	
+	Custom.Name = "Custom"
+Custom.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Custom.BackgroundTransparency = 1.000
+Custom.Position = UDim2.new(0.048780486, 0, 0, 0)
+Custom.Size = UDim2.new(0, 149, 0, 22)
+
+CustomIcon.Name = "CustomIcon"
+CustomIcon.Parent = Custom
+CustomIcon.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+CustomIcon.BackgroundTransparency = 1.000
+CustomIcon.Position = UDim2.new(0, 0, 0.0161290318, 0)
+CustomIcon.Size = UDim2.new(0, 25, 0, 25)
+CustomIcon.Image = "rbxassetid://4666593882"
+
+CustomText.Name = "CustomText"
+CustomText.Parent = Custom
+CustomText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+CustomText.BackgroundTransparency = 1.000
+CustomText.Position = UDim2.new(0.208053693, 0, 0, 0)
+CustomText.Size = UDim2.new(0, 122, 0, 25)
+CustomText.Font = Enum.Font.SourceSans
+CustomText.Text = tostring(name)
+CustomText.TextColor3 = Color3.fromRGB(255, 255, 255)
+CustomText.TextSize = 16.000
+CustomText.TextXAlignment = Enum.TextXAlignment.Left
+
+CustomBtn.Name = "CustomBtn"
+CustomBtn.Parent = Custom
+CustomBtn.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+CustomBtn.BackgroundTransparency = 1.000
+CustomBtn.Size = UDim2.new(0, 149, 0, 22)
+CustomBtn.Font = Enum.Font.SourceSans
+CustomBtn.Text = ""
+CustomBtn.TextColor3 = Color3.fromRGB(0, 0, 0)
+	CustomBtn.TextSize = 14.000
+	CustomExplorerContainer.CanvasSize = CustomExplorerContainer.CanvasSize + UDim2.new(0,0,0.2,0)
+	
+	CustomBtn.MouseButton1Click:connect(function()
+		
+			for i,v in pairs (ExplorerContentsContainer:GetDescendants()) do
+		if v.ClassName == "TextLabel" then
+			if v.Text == CustomText.Text then
+				return
+			end
+		end
+	end
+		
+		ExplorerContentsContainer.CanvasSize = ExplorerContentsContainer.CanvasSize + UDim2.new(0,0,0.4,0)
+		
+		
+		
+		-- Gui to Lua
+-- Version: 3.2
+
+-- Instances:
+
+local UpvalueInfoMain = Instance.new("ImageLabel", ExplorerContentsContainer)
+local Icon = Instance.new("ImageLabel")
+local UpvalueName = Instance.new("TextLabel")
+local UpvaluesMain = Instance.new("Frame")
+local UpvalueName_2 = Instance.new("TextLabel")
+local Icon_2 = Instance.new("ImageLabel")
+local UpvalueIndex = Instance.new("TextLabel")
+local UpvlauesOptionsBtn = Instance.new("TextButton")
+
+--Properties:
+
+UpvalueInfoMain.Name = "UpvalueInfoMain"
+UpvalueInfoMain.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+UpvalueInfoMain.BackgroundTransparency = 1.000
+UpvalueInfoMain.Size = UDim2.new(0.950131238, 0, 0, 60)
+UpvalueInfoMain.Image = "rbxassetid://2851926732"
+UpvalueInfoMain.ImageColor3 = Color3.fromRGB(48, 48, 48)
+UpvalueInfoMain.ScaleType = Enum.ScaleType.Slice
+UpvalueInfoMain.SliceCenter = Rect.new(12, 12, 12, 12)
+
+Icon.Name = "Icon"
+Icon.Parent = UpvalueInfoMain
+Icon.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Icon.BackgroundTransparency = 1.000
+Icon.Size = UDim2.new(0, 27, 0, 24)
+Icon.Image = "rbxassetid://4666593447"
+
+UpvalueName.Name = "UpvalueName"
+UpvalueName.Parent = UpvalueInfoMain
+UpvalueName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+UpvalueName.BackgroundTransparency = 1.000
+UpvalueName.Position = UDim2.new(0.0911602229, 0, 0.0333333351, 0)
+UpvalueName.Size = UDim2.new(0, 296, 0, 20)
+UpvalueName.Font = Enum.Font.SourceSans
+UpvalueName.TextColor3 = Color3.fromRGB(255, 255, 255)
+UpvalueName.TextSize = 16.000
+UpvalueName.TextWrapped = true
+		UpvalueName.TextXAlignment = Enum.TextXAlignment.Left
+		UpvalueName.Text = value
+
+UpvaluesMain.Name = "UpvaluesMain"
+UpvaluesMain.Parent = UpvalueInfoMain
+UpvaluesMain.BackgroundColor3 = Color3.fromRGB(33, 33, 33)
+UpvaluesMain.BorderSizePixel = 0
+UpvaluesMain.Position = UDim2.new(0.0220994465, 0, 0.466666669, 0)
+UpvaluesMain.Size = UDim2.new(0, 345, 0, 30)
+
+UpvalueName_2.Name = "UpvalueName2"
+UpvalueName_2.Parent = UpvaluesMain
+UpvalueName_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+UpvalueName_2.BackgroundTransparency = 1.000
+UpvalueName_2.Position = UDim2.new(0.144927531, 0, 0.166666672, 0)
+UpvalueName_2.Size = UDim2.new(0, 276, 0, 20)
+UpvalueName_2.Font = Enum.Font.SourceSans
+UpvalueName_2.Text = name
+UpvalueName_2.TextColor3 = Color3.fromRGB(255, 255, 255)
+UpvalueName_2.TextSize = 16.000
+UpvalueName_2.TextWrapped = true
+UpvalueName_2.TextXAlignment = Enum.TextXAlignment.Left
+
+Icon_2.Name = "Icon"
+Icon_2.Parent = UpvaluesMain
+Icon_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Icon_2.BackgroundTransparency = 1.000
+Icon_2.Position = UDim2.new(0.055072464, 0, 0.13333334, 0)
+Icon_2.Size = UDim2.new(0, 25, 0, 23)
+Icon_2.Image = "rbxassetid://4666594723"
+
+UpvalueIndex.Name = "UpvalueIndex"
+UpvalueIndex.Parent = UpvaluesMain
+UpvalueIndex.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+UpvalueIndex.BackgroundTransparency = 1.000
+UpvalueIndex.Position = UDim2.new(0.0186963957, 0, 0.166666672, 0)
+UpvalueIndex.Size = UDim2.new(0, 12, 0, 20)
+UpvalueIndex.Font = Enum.Font.SourceSans
+UpvalueIndex.Text = index
+UpvalueIndex.TextColor3 = Color3.fromRGB(255, 17, 60)
+UpvalueIndex.TextScaled = true
+UpvalueIndex.TextSize = 16.000
+UpvalueIndex.TextWrapped = true
+UpvalueIndex.TextXAlignment = Enum.TextXAlignment.Left
+
+UpvlauesOptionsBtn.Name = "UpvlauesOptionsBtn"
+UpvlauesOptionsBtn.Parent = UpvalueInfoMain
+UpvlauesOptionsBtn.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+UpvlauesOptionsBtn.BackgroundTransparency = 1.000
+UpvlauesOptionsBtn.Position = UDim2.new(0.0220994484, 0, 0.366666675, 0)
+UpvlauesOptionsBtn.Size = UDim2.new(0, 354, 0, 38)
+UpvlauesOptionsBtn.Font = Enum.Font.SourceSans
+UpvlauesOptionsBtn.Text = ""
+UpvlauesOptionsBtn.TextColor3 = Color3.fromRGB(0, 0, 0)
+UpvlauesOptionsBtn.TextSize = 14.000
+		
+			
+	ModuleTab.Visible = false
+  ConstantTab.Visible = false
+  ValueTab.Visible = false
+  ScriptScanTab.Visible = false
+  ExplorerContentsTab.Visible = false
+  HttpSpyTab.Visible = false
+		  ScriptDebugTab.Visible = false
+		ExplorerContentsTab.Visible = true
+		UpvalueScannerTab.Visible = false
+		
+		end)
+	
+	
+end
+
+function _G.ClvcoreExplorerAdd(Name, Content)
+	
+	for i,v in pairs (CustomExplorerContainer:GetDescendants()) do
+		if v.ClassName == "TextLabel" then
+			if v.Text == Name then
+				MessageBoxInitUI(Name.. " Already exists in explorer")
+				return
+			end
+		end
+	end
+	
+	local Custom = Instance.new("Frame", CustomExplorerContainer)
+local CustomIcon = Instance.new("ImageLabel")
+local CustomText = Instance.new("TextLabel")
+	local CustomBtn = Instance.new("TextButton")
+	
+	Custom.Name = "Custom"
+Custom.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Custom.BackgroundTransparency = 1.000
+Custom.Position = UDim2.new(0.048780486, 0, 0, 0)
+Custom.Size = UDim2.new(0, 149, 0, 22)
+
+CustomIcon.Name = "CustomIcon"
+CustomIcon.Parent = Custom
+CustomIcon.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+CustomIcon.BackgroundTransparency = 1.000
+CustomIcon.Position = UDim2.new(0, 0, 0.0161290318, 0)
+CustomIcon.Size = UDim2.new(0, 25, 0, 25)
+CustomIcon.Image = "rbxassetid://4666593882"
+
+CustomText.Name = "CustomText"
+CustomText.Parent = Custom
+CustomText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+CustomText.BackgroundTransparency = 1.000
+CustomText.Position = UDim2.new(0.208053693, 0, 0, 0)
+CustomText.Size = UDim2.new(0, 122, 0, 25)
+CustomText.Font = Enum.Font.SourceSans
+CustomText.Text = Name
+CustomText.TextColor3 = Color3.fromRGB(255, 255, 255)
+CustomText.TextSize = 16.000
+CustomText.TextXAlignment = Enum.TextXAlignment.Left
+
+CustomBtn.Name = "CustomBtn"
+CustomBtn.Parent = Custom
+CustomBtn.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+CustomBtn.BackgroundTransparency = 1.000
+CustomBtn.Size = UDim2.new(0, 149, 0, 22)
+CustomBtn.Font = Enum.Font.SourceSans
+CustomBtn.Text = ""
+CustomBtn.TextColor3 = Color3.fromRGB(0, 0, 0)
+	CustomBtn.TextSize = 14.000
+	CustomExplorerContainer.CanvasSize = CustomExplorerContainer.CanvasSize + UDim2.new(0,0,0.2,0)
+
+	
+	
+	
+	CustomBtn.MouseButton1Click:connect(function()
+		
+		for i,v in pairs (ExplorerContentsContainer:GetDescendants()) do
+		if v.ClassName == "TextLabel" then
+			if v.Text == CustomText.Text then
+				return
+			end
+		end
+	end
+		
+		ExplorerContentsContainer.CanvasSize = ExplorerContentsContainer.CanvasSize + UDim2.new(0,0,0.4,0)
+		
+				
+				local CustomModul = Instance.new("ImageLabel")
+local CustomIcon = Instance.new("ImageLabel")
+local CustomGenerateBtn = Instance.new("TextButton")
+local CustomTableMain = Instance.new("Frame")
+local CustomTableNameIcon = Instance.new("ImageLabel")
+local CustomTableValueText = Instance.new("TextLabel")
+local CustomValueNameIcon = Instance.new("ImageLabel")
+local CustomTableValueBox = Instance.new("TextBox")
+
+--Properties:
+
+CustomModul.Name = "CustomModul"
+CustomModul.Parent = ExplorerContentsContainer
+CustomModul.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+CustomModul.BackgroundTransparency = 1.000
+CustomModul.Position = UDim2.new(0.0208877288, 0, 0.0427807495, 0)
+CustomModul.Size = UDim2.new(0, 368, 0, 74)
+CustomModul.Image = "rbxassetid://2851926732"
+CustomModul.ImageColor3 = Color3.fromRGB(58, 58, 58)
+CustomModul.ScaleType = Enum.ScaleType.Slice
+CustomModul.SliceCenter = Rect.new(12, 12, 12, 12)
+
+CustomIcon.Name = "CustomIcon"
+CustomIcon.Parent = CustomModul
+CustomIcon.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+CustomIcon.BackgroundTransparency = 1.000
+CustomIcon.Position = UDim2.new(0, 0, 0.0161290318, 0)
+CustomIcon.Size = UDim2.new(0, 25, 0, 25)
+CustomIcon.Image = "rbxassetid://2759601950"
+
+CustomGenerateBtn.Name = "CustomGenerateBtn"
+CustomGenerateBtn.Parent = CustomModul
+CustomGenerateBtn.BackgroundColor3 = Color3.fromRGB(58, 58, 58)
+CustomGenerateBtn.BorderSizePixel = 0
+CustomGenerateBtn.Position = UDim2.new(0.0842391327, 0, 0.0161289517, 0)
+CustomGenerateBtn.Size = UDim2.new(0, 333, 0, 25)
+CustomGenerateBtn.Font = Enum.Font.Code
+CustomGenerateBtn.Text = Name
+CustomGenerateBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+CustomGenerateBtn.TextSize = 16.000
+CustomGenerateBtn.TextXAlignment = Enum.TextXAlignment.Left
+
+CustomTableMain.Name = "CustomTableMain"
+CustomTableMain.Parent = CustomModul
+CustomTableMain.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+CustomTableMain.BorderSizePixel = 0
+CustomTableMain.Position = UDim2.new(0.0108695654, 0, 0.336271137, 0)
+CustomTableMain.Size = UDim2.new(0, 360, 0, 40)
+
+CustomTableNameIcon.Name = "CustomTableNameIcon"
+CustomTableNameIcon.Parent = CustomTableMain
+CustomTableNameIcon.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+CustomTableNameIcon.BackgroundTransparency = 1.000
+CustomTableNameIcon.BorderSizePixel = 0
+CustomTableNameIcon.Position = UDim2.new(0, 0, 0.0250000004, 0)
+CustomTableNameIcon.Size = UDim2.new(0, 18, 0, 18)
+CustomTableNameIcon.Image = "rbxassetid://4702833493"
+CustomTableNameIcon.ImageColor3 = Color3.fromRGB(230, 230, 113)
+
+CustomTableValueText.Name = "CustomTableValueText"
+CustomTableValueText.Parent = CustomTableNameIcon
+CustomTableValueText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+CustomTableValueText.BackgroundTransparency = 1.000
+CustomTableValueText.BorderColor3 = Color3.fromRGB(27, 42, 53)
+CustomTableValueText.Position = UDim2.new(1.5, 0, 0.222222224, 0)
+CustomTableValueText.Size = UDim2.new(0, 333, 0, 10)
+CustomTableValueText.Font = Enum.Font.SourceSans
+CustomTableValueText.Text = tostring(index)
+CustomTableValueText.TextColor3 = Color3.fromRGB(225, 150, 85)
+CustomTableValueText.TextSize = 16.000
+CustomTableValueText.TextXAlignment = Enum.TextXAlignment.Left
+
+CustomValueNameIcon.Name = "CustomValueNameIcon"
+CustomValueNameIcon.Parent = CustomTableMain
+CustomValueNameIcon.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+CustomValueNameIcon.BackgroundTransparency = 1.000
+CustomValueNameIcon.BorderSizePixel = 0
+CustomValueNameIcon.Position = UDim2.new(-0.00833333377, 0, 0.475000024, 0)
+CustomValueNameIcon.Size = UDim2.new(0, 21, 0, 21)
+CustomValueNameIcon.Image = "rbxassetid://4702854135"
+CustomValueNameIcon.ImageColor3 = Color3.fromRGB(230, 230, 113)
+
+CustomTableValueBox.Name = "CustomTableValueBox"
+CustomTableValueBox.Parent = CustomValueNameIcon
+CustomTableValueBox.BackgroundColor3 = Color3.fromRGB(58, 58, 58)
+CustomTableValueBox.BackgroundTransparency = 1.000
+CustomTableValueBox.BorderSizePixel = 0
+CustomTableValueBox.Position = UDim2.new(1.42857146, 0, 0.238095239, 0)
+CustomTableValueBox.Size = UDim2.new(0, 329, 0, 10)
+CustomTableValueBox.Font = Enum.Font.SourceSans
+CustomTableValueBox.PlaceholderText = "ValueHere"
+CustomTableValueBox.Text = tostring(Name)
+CustomTableValueBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+		CustomTableValueBox.TextSize = 14.000
+		CustomTableValueBox.TextEditable = false
+				CustomTableValueBox.TextXAlignment = Enum.TextXAlignment.Left
+				
+		
+				
+		
+		
+
+		
+		
+	ModuleTab.Visible = false
+  ConstantTab.Visible = false
+  ValueTab.Visible = false
+  ScriptScanTab.Visible = false
+  ExplorerContentsTab.Visible = false
+  HttpSpyTab.Visible = false
+		  ScriptDebugTab.Visible = false
+		ExplorerContentsTab.Visible = true
+		UpvalueScannerTab.Visible = false
+		
+	end)
+	
+end
+
+CacheBtn.MouseButton1Click:connect(function()
+	local owo, uwu = pcall(function() loadstring(tostring(scripttext.Text))() end);
+	if uwu then
+		ErrorText.Text = uwu
+	end
+end)
+
+
+CopyBtn.MouseButton1Click:connect(function()
+	setclipboard(scripttext.Text)
+end)
